@@ -2,6 +2,9 @@
 // a invalid value
 // the console output that value even if you fixed it on the 2nd prompt.
 
+// global console prompt import
+// const prompt = require("prompt-sync")();
+
 // The bot randomly return one of the following string values: “rock”, “paper” or “scissors”
 function getComputerChoice(){
     let randomNumber = Math.floor(Math.random() * 3); // random generate # from 0 - 2
@@ -27,7 +30,7 @@ function getComputerChoice(){
 // now we need 3 choices from the human and compare with the bot's choice
 // to determine the winner
 function gethumanSelection(){
-    let choice = prompt("🎮 Choose your move: 🪨 Rock, 📄 Paper, or ✂️ Scissors?");
+    let choice = prompt("🎮 Choose your move: 🪨 Rock, 📄 Paper, or ✂️ Scissors? ");
     // lower case the choice
     let lowerCaseChoice = choice.toLocaleLowerCase();
 
@@ -77,14 +80,15 @@ function playGame(){
         console.log("Round: ", round);
 
         let result = playRound(gethumanSelection(), getComputerChoice());
-        // console.log("this is result!", result);
         if (result === "humanWin"){
             humanScore += 1;
         }else if (result === "humanLose"){
             computerScore += 1;
         }
+
         console.log(`Current Score: Human Score: ${humanScore} and computer score: ${computerScore}`);
-    }
+        console.log("")
+    }   
     if (humanScore > computerScore){
         console.log("The winner is human")
     } else if (computerScore > humanScore){
@@ -92,6 +96,7 @@ function playGame(){
     } else {
         console.log("It's a tie!")
     }
+
 }
 
 playGame();
