@@ -46,43 +46,36 @@ function gethumanSelection(){
 // round
 // try to build this with switch statement
 function playRound(humanSelection, computerSelection){
-
-    // let resultWin = `You win! ${humanSelection} beats ${computerSelection}`;
-    // let resultLose = `You lose! ${computerSelection} beats ${humanSelection}`;
-    // let resultTie = `Tied! both select ${humanSelection}!`;
-
-    // human lose condition
-    if ((humanSelection === "rock" && computerSelection === "paper")
-        ||(humanSelection === "paper" && computerSelection === "scissors") 
-        ||(humanSelection === "scissors" && computerSelection == "rock")) {
+    if (humanSelection === computerSelection) {
+        console.log("It's a tie!");
+        return "tie";
             
-            console.log(`You lose! ${computerSelection} beats ${humanSelection}`);
-            return "humanLose";
-            
-
     // human win condition
     } else if ((humanSelection === "paper" && computerSelection === "rock")
         || (humanSelection === "scissors" && computerSelection === "paper") 
         ||(humanSelection === "rock" && computerSelection == "scissors")){
             
-            // humanScore += 1;
-            // return [resultWin,computerScore,humanscore];
             console.log(`You win! ${humanSelection} beats ${computerSelection}`);
             return "humanWin";
 
+    // else human lose
     } else{
-        // return [resultTie,computerScore,humanscore];
-        console.log(`Tied! both select ${humanSelection}!`);
-        return "tie";
+        console.log(`You lose! ${computerSelection} beats ${humanSelection}`);
+        return "humanLose";
     }                       
 }
 // console.log(playRound(gethumanSelection(), getComputerChoice()));
 
 // play the game 5 times
 function playGame(){
+   
     let humanScore = 0;
     let computerScore = 0;
     for (let i = 0; i < 5; i++) {
+        // round count
+        let round = i + 1;
+        console.log("Round: ", round);
+
         let result = playRound(gethumanSelection(), getComputerChoice());
         // console.log("this is result!", result);
         if (result === "humanWin"){
